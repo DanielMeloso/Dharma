@@ -1,0 +1,235 @@
+﻿@model Dharma.Models.Disciplina
+@{
+    ViewData["Title"] = "Alteração de Disciplina";
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1></h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-area="Administrativa" asp-controller="Home" asp-action="Index">Adm</a></li>
+                    <li class="breadcrumb-item"><a href="#">Acadêmico</a></li>
+                    <li class="breadcrumb-item"><a asp-area="Administrativa" asp-controller="Disciplina" asp-action="Index"> Disciplinas</a></li>
+                    <li class="breadcrumb-item active">@Model.Nome</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+@if (TempData["MSG_S"] != null)
+{
+    <div class="col-md-12">
+        <p class="alert alert-success" style="margin-top:5px;">@TempData["MSG_S"]</p>
+    </div>
+}
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Disciplina</h3>
+        </div>
+        <form method="post">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-sm-5">
+                        <label asp-for="Nome" class="form-label"></label>
+                        <input asp-for="Nome" class="form-control" placeholder="Nome da Disciplina">
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label asp-for="Nome_Resumido" class="form-label"></label>
+                        <input asp-for="Nome_Resumido" class="form-control" placeholder="Nome resumido da disciplina">
+                        <span asp-validation-for="Nome_Resumido" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label asp-for="Identificacao" class="form-label"></label>
+                        <input asp-for="Identificacao" class="form-control" placeholder="Identificação">
+                        <span asp-validation-for="Identificacao" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label asp-for="Codigo_Mec" class="form-label"></label>
+                        <input asp-for="Codigo_Mec" class="form-control" placeholder="Código do MEC">
+                        <span asp-validation-for="Codigo_Mec" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label asp-for="Ch_Presencial_Teorica" class="form-label"></label>
+                        <input asp-for="Ch_Presencial_Teorica" class="form-control" placeholder="Ch Presencial Teórica" min="0" id="chPresencialTeorica" onchange="cadDisciplinaCalcCh()">
+                        <span asp-validation-for="Ch_Presencial_Teorica" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label asp-for="Ch_Presencial_Pratica" class="form-label"></label>
+                        <input asp-for="Ch_Presencial_Pratica" class="form-control" placeholder="Ch Presencial Prática" min="0" id="chPresencialPratica" onchange="cadDisciplinaCalcCh()">
+                        <span asp-validation-for="Ch_Presencial_Pratica" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label asp-for="Ch_Ead_Teorica" class="form-label"></label>
+                        <input asp-for="Ch_Ead_Teorica" class="form-control" placeholder="CH EAD Teórica" min="0" id="chEadTeorica" onchange="cadDisciplinaCalcCh()">
+                        <span asp-validation-for="Ch_Ead_Teorica" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label asp-for="Ch_Ead_Pratica" class="form-label"></label>
+                        <input asp-for="Ch_Ead_Pratica" class="form-control" placeholder="CH EAD Prática" min="0" id="chEadPratica" onchange="cadDisciplinaCalcCh()">
+                        <span asp-validation-for="Ch_Ead_Pratica" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label asp-for="Ch_Estudo" class="form-label"></label>
+                        <input asp-for="Ch_Estudo" class="form-control" placeholder="CH Estudo" min="0" id="chEstudo" onchange="cadDisciplinaCalcCh()">
+                        <span asp-validation-for="Ch_Estudo" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label asp-for="Ch" class="form-label"></label>
+                        <input asp-for="Ch" class="form-control" placeholder="CH" min="0" readonly="readonly" id="ch">
+                        <span asp-validation-for="Ch" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="card card-primary card-outline card-tabs" style="margin-top:20px">
+                    <div class="card-header p-0 pt-1 border-bottom-0">
+                        <ul class="nav nav-tabs" id="custom-tabs-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="custom-tabs-complemento-tab" data-toggle="pill" href="#custom-tabs-complemento" role="tab" aria-controls="custom-tabs-complemento" aria-selected="true">Complemento</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="custom-tabs-objetivos-tab" data-toggle="pill" href="#custom-tabs-objetivos" role="tab" aria-controls="custom-tabs-objetivos" aria-selected="false">Objetivos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="custom-tabs-ementa-tab" data-toggle="pill" href="#custom-tabs-ementa" role="tab" aria-controls="custom-tabs-ementa" aria-selected="false">Ementa</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="custom-tabs-metodoAvaliacao-tab" data-toggle="pill" href="#custom-tabs-metodoAvaliacao" role="tab" aria-controls="custom-tabs-metodoAvaliacao" aria-selected="false">Método de Avaliação</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="custom-tabs-tabContent">
+                            <div class="tab-pane fade show active" id="custom-tabs-complemento" role="tabpanel" aria-labelledby="custom-tabs-complemento-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card card-outline card-info">
+                                            <div class="card-header">
+                                                <h3 class="card-title">
+                                                    Bibliografia Básica
+                                                </h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <textarea asp-for="Bibliografia_Basica" class="summernote"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card card-outline card-info">
+                                            <div class="card-header">
+                                                <h3 class="card-title">
+                                                    Bibliografia Complementar
+                                                </h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <textarea asp-for="Bibliografia_Complementar" class="summernote"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card card-outline card-info">
+                                            <div class="card-header">
+                                                <h3 class="card-title">
+                                                    Conteúdo Programático
+                                                </h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <textarea asp-for="Conteudo_Programatico" class="summernote"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card card-outline card-info">
+                                            <div class="card-header">
+                                                <h3 class="card-title">
+                                                    Atividade fora de aula
+                                                </h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <textarea asp-for="Atividade_Fora_Aula" class="summernote"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="custom-tabs-objetivos" role="tabpanel" aria-labelledby="custom-tabs-objetivos-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card card-outline card-info">
+                                            <div class="card-header">
+                                                <h3 class="card-title">
+                                                    Objetivos Gerais
+                                                </h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <textarea asp-for="Objetivo_Geral" class="summernote"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card card-outline card-info">
+                                            <div class="card-header">
+                                                <h3 class="card-title">
+                                                    Objetivos Específicos
+                                                </h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <textarea asp-for="Objetivo_Especifico" class="summernote"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="custom-tabs-ementa" role="tabpanel" aria-labelledby="custom-tabs-ementa-tab">
+                                <div class="col-md-12">
+                                    <div class="card card-outline card-info">
+                                        <div class="card-header">
+                                            <h3 class="card-title">
+                                                Ementa
+                                            </h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <textarea asp-for="Ementa" class="summernote"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="custom-tabs-metodoAvaliacao" role="tabpanel" aria-labelledby="custom-tabs-metodoAvaliacao-tab">
+                                <div class="col-md-12">
+                                    <div class="card card-outline card-info">
+                                        <div class="card-header">
+                                            <h3 class="card-title">
+                                                Método de Avaliação
+                                            </h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <textarea asp-for="Metodo_Avaliacao" class="summernote"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Atualizar</button>
+            </div>
+        </form>
+    </div>
+</div>
