@@ -1,0 +1,68 @@
+﻿@model Dharma.Models.Curso
+@{
+    ViewData["Title"] = "Cadastro de Curso";
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1></h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-area="Administrativa" asp-controller="Home" asp-action="Index"> Adm</a></li>
+                    <li class="breadcrumb-item"><a href="#">Acadêmico</a></li>
+                    <li class="breadcrumb-item"><a asp-area="Administrativa" asp-controller="Curso" asp-action="Index"> Cursos</a></li>
+                    <li class="breadcrumb-item active">Curso</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Curso</h3>
+        </div>
+        <form method="post">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-sm-5">
+                        <label asp-for="Nome" class="form-label"></label>
+                        <input asp-for="Nome" class="form-control" placeholder="Nome do Curso">
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label asp-for="Nome_Resumido" class="form-label"></label>
+                        <input asp-for="Nome_Resumido" class="form-control" placeholder="Nome resumido do Curso">
+                        <span asp-validation-for="Nome_Resumido" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label asp-for="Nivel_Ensino_Id" class="form-label"></label>
+                        <select asp-for="Nivel_Ensino_Id" class="form-control" asp-items="@ViewBag.NiveisEnsino">
+                            <option value="">Selecione</option>
+                        </select>
+                        <span asp-validation-for="Nivel_Ensino_Id" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <input asp-for="Ativo" type="checkbox" class="form-control" checked data-bootstrap-switch data-off-color="danger" data-on-color="success" data-on-text="Ativo" data-off-text="Inativo" data-size="small">
+                        <span asp-validation-for="Ativo" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+        </form>
+    </div>
+    <!-- /.card -->
+</div>
+
+
+

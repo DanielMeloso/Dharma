@@ -1,0 +1,49 @@
+﻿@model Dharma.Models.Funcionario
+@{
+    ViewData["Title"] = "Alteração de Funcionário";
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1></h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-area="Administrativa" asp-controller="Home" asp-action="Index"> Adm</a></li>
+                    <li class="breadcrumb-item"><a href="#">Recursos Humanos</a></li>
+                    <li class="breadcrumb-item"><a asp-area="Administrativa" asp-controller="Funcionario" asp-action="Index"> Funcionários</a></li>
+                    <li class="breadcrumb-item active">@Model.Nome</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+@if (TempData["MSG_S"] != null)
+{
+    <div class="col-md-12">
+        <p class="alert alert-success" style="margin-top:5px;">@TempData["MSG_S"]</p>
+    </div>
+}
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Funcionário</h3>
+        </div>
+        <form method="post">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-sm-5">
+                        <label asp-for="Nome" class="form-label"></label>
+                        <input asp-for="Nome" class="form-control" placeholder="Nome do Funcionário">
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Atualizar</button>
+            </div>
+        </form>
+    </div>
+</div>

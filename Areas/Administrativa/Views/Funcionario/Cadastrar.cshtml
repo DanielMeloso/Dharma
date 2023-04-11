@@ -1,0 +1,73 @@
+﻿@model Dharma.Models.Funcionario
+@{
+    ViewData["Title"] = "Cadastro de Funcionário";
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1></h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-area="Administrativa" asp-controller="Home" asp-action="Index"> Adm</a></li>
+                    <li class="breadcrumb-item"><a href="#">Recursos Humanos</a></li>
+                    <li class="breadcrumb-item"><a asp-area="Administrativa" asp-controller="Funcionario" asp-action="Index"> Funcionários</a></li>
+                    <li class="breadcrumb-item active">Funcionário</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Funcionário</h3>
+        </div>
+        <form method="post">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-sm-4">
+                        <label asp-for="Nome" class="form-label"></label>
+                        <input asp-for="Nome" class="form-control" placeholder="Nome do Funcionário">
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label asp-for="Identificacao" class="form-label"></label>
+                        <input asp-for="Identificacao" class="form-control" placeholder="Identificação">
+                        <span asp-validation-for="Identificacao" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label asp-for="Cargo_Id" class="form-label"></label>
+                        <select asp-for="Cargo_Id" class="form-control" asp-items="@ViewBag.Cargos">
+                            <option value="">Selecione</option>
+                        </select>
+                        <span asp-validation-for="Cargo_Id" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-2">
+                        <br />
+                        <input asp-for="Ativo" type="checkbox" class="form-control" checked data-bootstrap-switch data-off-color="danger" data-on-color="success" data-on-text="Ativo" data-off-text="Inativo" data-size="small">
+                        <span asp-validation-for="Ativo" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <br />
+                        <input asp-for="Leciona" type="checkbox" class="form-control" data-bootstrap-switch data-off-color="danger" data-on-color="success" data-on-text="Leciona" data-off-text="N Leciona" data-size="small">
+                        <span asp-validation-for="Leciona" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+        </form>
+    </div>
+    <!-- /.card -->
+</div>
+
+
+

@@ -21,6 +21,11 @@ namespace Dharma.Database
         public DbSet<NivelEnsino> NiveisEnsino => Set<NivelEnsino>();
         public DbSet<Nacionalidade> Nacionalidades => Set<Nacionalidade>();
         public DbSet<MotivoDesistencia> MotivosDesistencia => Set<MotivoDesistencia>();
+        public DbSet<Curso> Cursos => Set<Curso>();
+        public DbSet<TipoGrade> TiposGrade => Set<TipoGrade>();
+        public DbSet<Funcionario> Funcionarios => Set<Funcionario>();
+        public DbSet<Cargo> Cargos => Set<Cargo>();
+        public DbSet<Serie> Series => Set<Serie>();
 
     }
 
@@ -76,6 +81,43 @@ namespace Dharma.Database
                 new MotivoDesistencia() { Id = 1, Nome = "Insatisfação" },
                 new MotivoDesistencia() { Id = 2, Nome = "Mudança de cidade" },
                 new MotivoDesistencia() { Id = 3, Nome = "Dificuldade financeira" }
+            );
+
+            modelBuilder.Entity<Curso>().HasData(
+                new Curso() { Id = 1, Nome = "Ciências Contábeis", Nome_Resumido="Cie Cont", Nivel_Ensino_Id=3, Ativo = true },
+                new Curso() { Id = 2, Nome = "Ensino Fundamental", Nome_Resumido="Fundamental", Nivel_Ensino_Id=1, Ativo = true },
+                new Curso() { Id = 3, Nome = "Ensino Médio", Nome_Resumido="Médio", Nivel_Ensino_Id = 2, Ativo = true }
+            );
+
+            modelBuilder.Entity<TipoGrade>().HasData(
+                new TipoGrade() { Id = 1, Nome = "Curricular" },
+                new TipoGrade() { Id = 2, Nome = "Seriado" }
+            );
+
+            modelBuilder.Entity<Cargo>().HasData(
+                new Cargo() { Id = 1, Descricao = "Professor" },
+                new Cargo() { Id = 2, Descricao = "Coordenador" },
+                new Cargo() { Id = 3, Descricao = "Secretaria" },
+                new Cargo() { Id = 4, Descricao = "Financeiro" }
+            );
+
+            modelBuilder.Entity<Funcionario>().HasData(
+                new Funcionario() { Id = 1, Nome = "Daniel Guilherme", Cargo_Id = 1, Identificacao="Daniel", Leciona = true },
+                new Funcionario() { Id = 2, Nome = "Paola Carosella", Cargo_Id = 2, Identificacao="Paola", Leciona = true },
+                new Funcionario() { Id = 3, Nome = "Erick Jaquim", Cargo_Id = 4, Identificacao="Erick", Leciona = false }
+            );
+
+            modelBuilder.Entity<Serie>().HasData(
+                new Serie() { Id = 1, Descricao = "1º ano", CursoId = 2, Ativo = true },
+                new Serie() { Id = 2, Descricao = "2º ano", CursoId = 2, Ativo = true },
+                new Serie() { Id = 3, Descricao = "3º ano", CursoId = 2, Ativo = true },
+                new Serie() { Id = 4, Descricao = "4º ano", CursoId = 2, Ativo = true },
+                new Serie() { Id = 5, Descricao = "5º ano", CursoId = 2, Ativo = true },
+                new Serie() { Id = 6, Descricao = "6º ano", CursoId = 2, Ativo = true },
+                new Serie() { Id = 7, Descricao = "7º ano", CursoId = 2, Ativo = true },
+                new Serie() { Id = 8, Descricao = "8º ano", CursoId = 2, Ativo = true },
+                new Serie() { Id = 9, Descricao = "9º ano", CursoId = 2, Ativo = true }
+                
             );
         }
     }

@@ -29,6 +29,9 @@ builder.Services.AddScoped<ITurnoRepository, TurnoRepository>();
 builder.Services.AddScoped<INivelEnsinoRepository, NivelEnsinoRepository>();
 builder.Services.AddScoped<INacionalidadeRepository, NaciondalideRepository>();
 builder.Services.AddScoped<IMotivoDesistenciaRepository, MotivoDesistenciaRepository>();
+builder.Services.AddScoped<ICursoRepository, CursoRepository>();
+builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
+builder.Services.AddScoped<ICargoRepository, CargoRepository>();
 
 
 var app = builder.Build();

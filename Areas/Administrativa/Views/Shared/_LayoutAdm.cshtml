@@ -204,11 +204,37 @@
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item @((ViewContext.RouteData.Values["controller"].ToString() == "Funcionario") || (ViewContext.RouteData.Values["controller"].ToString() == "Cargo") ? "menu-open" : "")">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-circle"></i>
+                                <p>
+                                    Recursos Humanos
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-area="Administrativa" asp-controller="Funcionario" asp-action="Index" class="nav-link @((ViewContext.RouteData.Values["controller"].ToString() == "Funcionario") ? "active" : "")">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Funcionários</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-area="Administrativa" asp-controller="Cargo" asp-action="Index" class="nav-link @((ViewContext.RouteData.Values["controller"].ToString() == "Cargo") ? "active" : "")">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Cargos</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li class="nav-item @((ViewContext.RouteData.Values["controller"].ToString() == "Curso") ? "menu-open" : "")">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-circle"></i>
                                 <p>
-                                    --
+                                    Acadêmico
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -343,6 +369,8 @@
     <script src="~/resources/plugins/jquery-mapael/maps/usa_states.min.js"></script>
     <!-- ChartJS -->
     <script src="~/resources/plugins/chart.js/Chart.min.js"></script>
+    <!-- Bootstrap Switch -->
+    <script src="~/resources/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
     <!-- Usado para right click nas tabelas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
 
@@ -388,6 +416,10 @@
                 height: 200
             });
         });
+
+        $("input[data-bootstrap-switch]").each(function(){
+            $(this).bootstrapSwitch('state', $(this).prop('checked'));
+        })
     </script>
 </body>
 </html>
