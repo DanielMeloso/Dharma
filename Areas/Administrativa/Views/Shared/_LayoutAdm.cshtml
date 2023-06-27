@@ -204,6 +204,32 @@
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item @((ViewContext.RouteData.Values["controller"].ToString() == "Pessoa") ? "menu-open" : "")">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-circle"></i>
+                                <p>
+                                    Pessoas
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-area="Administrativa" asp-controller="Pessoa" asp-action="Index" class="nav-link @((ViewContext.RouteData.Values["controller"].ToString() == "Pessoa") ? "active" : "")">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Pessoas</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-area="Administrativa" asp-controller="Aluno" asp-action="Index" class="nav-link @((ViewContext.RouteData.Values["controller"].ToString() == "Aluno") ? "active" : "")">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Alunos</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li class="nav-item @((ViewContext.RouteData.Values["controller"].ToString() == "Curso") ? "menu-open" : "")">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-circle"></i>

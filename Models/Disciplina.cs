@@ -9,15 +9,15 @@ namespace Dharma.Models
         public int Id { get; set; }
         [Display(Name = "Disciplina")]
         [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
-        public string Nome { get; set; }
+        public required string Nome { get; set; }
 
         [Display(Name = "Disciplina Resumida")]
         [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
-        public string Nome_Resumido { get; set; }
+        public required string Nome_Resumido { get; set; }
 
         [Display(Name = "Identificação")]
         [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
-        public string Identificacao { get; set; }
+        public required string Identificacao { get; set; }
 
         [Display(Name = "Código do MEC")]
         public string? Codigo_Mec { get; set; }

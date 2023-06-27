@@ -4,11 +4,11 @@ using Dharma.Models;
 
 namespace Dharma.Areas.Administrativa.Repositories
 {
-    public class DisicplinaRepository : IDisciplinaRepository
+    public class DisciplinaRepository : IDisciplinaRepository
     {
         private DharmaContext _banco;
 
-        public DisicplinaRepository(DharmaContext banco)
+        public DisciplinaRepository(DharmaContext banco)
         {
             _banco = banco;
         }

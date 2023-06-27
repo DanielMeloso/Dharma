@@ -16,11 +16,17 @@ namespace Dharma.Database
             new DbInitializer(modelBuilder).Seed();
         }
 
+        public DbSet<Aluno> Alunos => Set<Aluno>();
+        public DbSet<AlunoCurso> AlunoCursos => Set<AlunoCurso>();
+        public DbSet<Curso> Cursos => Set<Curso>();
         public DbSet<Disciplina> Disciplinas => Set<Disciplina>();
-        public DbSet<Turno> Turnos => Set<Turno>();
-        public DbSet<NivelEnsino> NiveisEnsino => Set<NivelEnsino>();
-        public DbSet<Nacionalidade> Nacionalidades => Set<Nacionalidade>();
+        public DbSet<Matricula> Matriculas => Set<Matricula>();
         public DbSet<MotivoDesistencia> MotivosDesistencia => Set<MotivoDesistencia>();
+        public DbSet<Nacionalidade> Nacionalidades => Set<Nacionalidade>();
+        public DbSet<NivelEnsino> NiveisEnsino => Set<NivelEnsino>();
+        public DbSet<Pessoa> Pessoas => Set<Pessoa>();
+        public DbSet<Turno> Turnos => Set<Turno>();
+
 
     }
 
@@ -76,6 +82,17 @@ namespace Dharma.Database
                 new MotivoDesistencia() { Id = 1, Nome = "Insatisfação" },
                 new MotivoDesistencia() { Id = 2, Nome = "Mudança de cidade" },
                 new MotivoDesistencia() { Id = 3, Nome = "Dificuldade financeira" }
+            );
+
+            modelBuilder.Entity<Pessoa>().HasData(
+                new Pessoa() { Id = 1, Nome = "Daniel Alves Meloso"},
+                new Pessoa() { Id = 2, Nome = "Vitória Alves Meloso"}
+            );
+
+            modelBuilder.Entity<Curso>().HasData(
+                new Curso() { Id = 1, Nome = "Educação Infantil", Nome_Resumido = "Infantil"},
+                new Curso() { Id = 2, Nome = "Ensino Fundamental", Nome_Resumido = "Fund."},
+                new Curso() { Id = 3, Nome = "Ensino Médio", Nome_Resumido = "Médio"}
             );
         }
     }

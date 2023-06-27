@@ -12,7 +12,7 @@ builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-string connection = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Dharma;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+string connection = "Data Source=.\\SQLDEV;Initial Catalog=Dharma;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 builder.Services.AddDbContext<DharmaContext>(options => options.UseSqlServer(connection));
   
 
@@ -24,7 +24,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Lockout.AllowedForNewUsers = true;
 });
 
-builder.Services.AddScoped<IDisciplinaRepository, DisicplinaRepository>();
+builder.Services.AddScoped<IDisciplinaRepository, DisciplinaRepository>();
 builder.Services.AddScoped<ITurnoRepository, TurnoRepository>();
 builder.Services.AddScoped<INivelEnsinoRepository, NivelEnsinoRepository>();
 builder.Services.AddScoped<INacionalidadeRepository, NaciondalideRepository>();
